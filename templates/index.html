@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Symbol</th>
+      <th scope="col">Name</th>
+      <th scope="col">Shares</th>
+      <th scope="col">Price</th>
+      <th scope="col">TOTAL</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in userPortfolio %}
+        <tr>
+          <th scope="row">{{item.symbol}}</th>
+          <td>{{item.name}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.current_price | usd}} </td>
+          <td>{{(item.quantity*item.current_price)|usd}}</td>
+        </tr>
+    {% endfor %}
+        <tr>
+          <th scope="row">CASH</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>${{cash}}</td>
+        </tr>
+        <tr>
+          <th scope="row">TOTAL VALUE</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><b>{{total|usd}}</b></td>
+        </tr>
+  </tbody>
+</table>
+{% endblock %}

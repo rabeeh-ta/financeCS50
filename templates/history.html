@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Symbol</th>
+      <th scope="col">Shares</th>
+      <th scope="col">Price</th>
+      <th scope="col">Transacted</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in transactions %}
+        <tr>
+          <th scope="row">{{item.symbol}}</th>
+
+          {% if item.order_type == "buy" %}
+            <td>{{item.quantity}}</td>
+          {% else %}
+            <td> <b>-</b> {{item.quantity}}</td>
+          {% endif %}
+
+          <td>{{item.price | usd}}</td>
+          <td>{{item.date_time}}</td>
+        </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+{% endblock %}
